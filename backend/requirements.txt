@@ -1,0 +1,37 @@
+# ---- Core API ----
+# Lower bounds only: pip picks the newest wheel available for your interpreter.
+fastapi>=0.115
+uvicorn>=0.34
+python-multipart>=0.0.20
+
+# Pydantic v2 (strict structured LLM outputs)
+pydantic>=2.11
+pydantic-settings>=2.7
+# Loads backend/.env into the settings object (pydantic-settings dependency,
+# pinned here so the Render build never resolves it away).
+python-dotenv>=1.0
+
+# ---- Persistence ----
+SQLAlchemy>=2.0.36
+
+# ---- HTTP client for LLM providers ----
+httpx>=0.28
+
+# ---- Ingestion ----
+pypdf>=5.1
+# Scanned-PDF OCR fallback (also needs the Poppler + Tesseract binaries)
+pdf2image>=1.17
+pytesseract>=0.3.13
+
+# ---- Export ----
+genanki>=0.13
+
+# ---- Dev / test ----
+pytest>=8.3
+
+# ---- Optional / intentionally NOT installed ----
+# sentence-transformers>=3.3   # only for EMBEDDING_BACKEND=sentence-transformers
+# fastembed>=0.4               # ONNX alternative to the zero-dep local embedder
+# groq>=0.11                   # NOT needed: app/llm/client.py calls the Groq
+#                              # OpenAI-compatible endpoint over httpx, so the same
+#                              # code path serves openai/gemini/openrouter too.
